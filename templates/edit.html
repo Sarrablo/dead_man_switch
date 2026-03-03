@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dead Man Switch - Editar</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .form-container {
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-title {
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(to right, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            color: var(--text-color);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .form-control:focus {
+            background-color: #0f172a;
+            border-color: var(--primary-color);
+            color: var(--text-color);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+        }
+
+        .btn-submit {
+            background: linear-gradient(to right, #6366f1, #a855f7);
+            border: none;
+            color: white;
+            font-weight: 700;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            width: 100%;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.4);
+            opacity: 0.9;
+        }
+
+        .help-text {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+        }
+
+        .btn-cancel {
+            background-color: transparent;
+            border: 1px solid #334155;
+            color: #94a3b8;
+            font-weight: 600;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            width: 100%;
+            margin-top: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cancel:hover {
+            background-color: #334155;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h1 class="form-title">Editar Switch</h1>
+
+        <form action="/modify" method="POST">
+            <input type="hidden" name="internalIdentifier" value="{{ switch.internalIdentifier }}">
+
+            <div class="mb-3">
+                <label class="form-label">Identificador Interno</label>
+                <input type="text" class="form-control" value="{{ switch.internalIdentifier }}" disabled>
+                <div class="help-text">El identificador no puede ser modificado.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="verificationAddress" class="form-label">Dirección de verificación</label>
+                <input type="text" class="form-control" id="verificationAddress" name="verificationAddress" required
+                    value="{{ switch.verificationAddress }}">
+            </div>
+
+            <div class="mb-3">
+                <label for="mailAddress" class="form-label">Direcciones de envío</label>
+                <input type="text" class="form-control" id="mailAddress" name="mailAddress" required
+                    value="{{ switch.mailAddress }}">
+            </div>
+
+            <div class="mb-3">
+                <label for="content" class="form-label">Contenido</label>
+                <textarea class="form-control" id="content" name="content" rows="4"
+                    required>{{ switch.content }}</textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="triggerDays" class="form-label">Días de espera</label>
+                <input type="number" class="form-control" id="triggerDays" name="triggerDays" required min="1"
+                    value="{{ switch.triggerDays }}">
+            </div>
+
+            <button type="submit" class="btn-submit">Guardar Cambios</button>
+            <a href="/" class="btn-cancel">Cancelar</a>
+        </form>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
