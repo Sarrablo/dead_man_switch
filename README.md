@@ -44,7 +44,18 @@ Variables requeridas en `.env`:
 -   `SMTP_SERVER`, `SMTP_USER`, `SMTP_PASSWORD`: Configuración para el envío de correos.
 -   `ENDPOINT_PASSWORD`: Contraseña para autorizar el envío manual de correos y procesos de disparo.
 
-### 5. Preparar la Base de Datos
+## 🐳 Ejecución con Docker (Recomendado)
+
+Si tienes Docker y Docker Compose instalados, puedes levantar la aplicación simplemente con:
+
+```bash
+docker-compose up -d --build
+```
+
+La aplicación estará disponible en `http://localhost:5000`.
+
+### 5. Preparar la Base de Datos manualmente (si no usas Docker)
+...
 Asegúrate de tener creada la tabla en tu MariaDB:
 ```sql
 CREATE TABLE `dead_man_switch` (

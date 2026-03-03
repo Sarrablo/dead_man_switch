@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    container_name: dead_man_switch_app
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    restart: always
+
+# Nota: La base de datos MariaDB se asume externa según db_config, 
+# pero si quisieras levantar una local, se añadiría aquí.
